@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-from typing import Callable
+from typing import Callable, Optional, List
 from packaging import version
 
 from model_compression_toolkit.verify_packages import FOUND_TORCH
@@ -47,7 +47,8 @@ if FOUND_TORCH:
                              is_layer_exportable_fn: Callable = is_pytorch_layer_exportable,
                              serialization_format: PytorchExportSerializationFormat = PytorchExportSerializationFormat.ONNX,
                              quantization_format: QuantizationFormat = QuantizationFormat.MCTQ,
-                             onnx_opset_version=DEFAULT_ONNX_OPSET_VERSION) -> None:
+                             onnx_opset_version: int = DEFAULT_ONNX_OPSET_VERSION,
+                             output_names: Optional[List[str]] = None) -> None:
         """
         Export a PyTorch quantized model to a torchscript or onnx model.
         The model will be saved to the path in save_model_path.
@@ -57,18 +58,24 @@ if FOUND_TORCH:
         (where the model will be saved to ONNX model).
 
         Args:
-            model: Model to export.
-            save_model_path: Path to save the model.
-            repr_dataset: Representative dataset for tracing the pytorch model (mandatory for exporting it).
-            is_layer_exportable_fn: Callable to check whether a layer can be exported or not.
-            serialization_format: Format to export the model according to (by default
-            PytorchExportSerializationFormat.ONNX).
-            quantization_format: Format of how quantizers are exported (fakely-quant, int8, MCTQ quantizers).
-            onnx_opset_version: ONNX opset version to use for exported ONNX model.
+            model (Module): Model to export.
+            save_model_path (str): Path to save the model.
+            repr_dataset (Callable): Representative dataset for tracing the pytorch model (mandatory for exporting it).
+            is_layer_exportable_fn (Callable): Callable to check whether a layer can be exported or not.
+            serialization_format (PytorchExportSerializationFormat): Format to export the model according to (by default PytorchExportSerializationFormat.ONNX).
+            quantization_format (QuantizationFormat): Format of how quantizers are exported (fakely-quant, int8, MCTQ quantizers).
+            onnx_opset_version (int): ONNX opset version to use for exported ONNX model.
+            output_names (Optional[List[str]]): Optional list of output node names for export compatibility. This argument is relevant only when using PytorchExportSerializationFormat.ONNX.
 
         """
         # Ensure 'metadata' is available directly on the model, if present in submodules
         find_and_assign_metadata_attr(model)
+
+        if output_names is not None and serialization_format != PytorchExportSerializationFormat.ONNX:
+            Logger.warning(
+                f'`output_names` is only applicable when exporting to ONNX. '
+                f'Current serialization format is {serialization_format}, so `output_names` will be ignored.'
+            )  # pragma: no cover
 
         if serialization_format == PytorchExportSerializationFormat.TORCHSCRIPT:
             if quantization_format in supported_serialization_quantization_export_dict[serialization_format]:
@@ -107,7 +114,7 @@ if FOUND_TORCH:
                 f'Unsupported serialization {serialization_format} was used to export Pytorch model.'
                 f' Please see API for supported formats.')  # pragma: no cover
 
-        exporter.export()
+        exporter.export(output_names=output_names)
 
 else:
     def pytorch_export_model(*args, **kwargs):
