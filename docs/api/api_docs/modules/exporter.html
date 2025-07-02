@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>exporter Module &#8212; MCT Documentation: ver 2.3.0</title>
+    <title>exporter Module &#8212; MCT Documentation: ver 2.4.2</title>
     <link rel="stylesheet" type="text/css" href="../../../static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../static/bizstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../../static/css/custom.css" />
@@ -31,7 +31,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.3.0</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.4.2</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">exporter Module</a></li> 
       </ul>
     </div>  
@@ -155,7 +155,7 @@ a .keras model with custom quantizers from mct_quantizers module.</p>
 <p>Allows to export a Pytorch model that was quantized via MCT.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="model_compression_toolkit.exporter.pytorch_export_model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model_compression_toolkit.exporter.</span></span><span class="sig-name descname"><span class="pre">pytorch_export_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repr_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_layer_exportable_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">is_pytorch_layer_exportable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serialization_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PytorchExportSerializationFormat.ONNX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantization_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">QuantizationFormat.MCTQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onnx_opset_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT_ONNX_OPSET_VERSION</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model_compression_toolkit.exporter.pytorch_export_model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model_compression_toolkit.exporter.</span></span><span class="sig-name descname"><span class="pre">pytorch_export_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repr_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_layer_exportable_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">is_pytorch_layer_exportable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serialization_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PytorchExportSerializationFormat.ONNX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantization_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">QuantizationFormat.MCTQ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onnx_opset_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT_ONNX_OPSET_VERSION</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model_compression_toolkit.exporter.pytorch_export_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Export a PyTorch quantized model to a torchscript or onnx model.
 The model will be saved to the path in save_model_path.
 Currently, pytorch_export_model supports only QuantizationFormat.FAKELY_QUANT (where weights
@@ -165,14 +165,14 @@ and activations are float fakely-quantized values) and PytorchExportSerializatio
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> – Model to export.</p></li>
-<li><p><strong>save_model_path</strong> – Path to save the model.</p></li>
-<li><p><strong>repr_dataset</strong> – Representative dataset for tracing the pytorch model (mandatory for exporting it).</p></li>
-<li><p><strong>is_layer_exportable_fn</strong> – Callable to check whether a layer can be exported or not.</p></li>
-<li><p><strong>serialization_format</strong> – Format to export the model according to (by default</p></li>
-<li><p><strong>PytorchExportSerializationFormat.ONNX</strong><strong>)</strong><strong>.</strong> – </p></li>
-<li><p><strong>quantization_format</strong> – Format of how quantizers are exported (fakely-quant, int8, MCTQ quantizers).</p></li>
-<li><p><strong>onnx_opset_version</strong> – ONNX opset version to use for exported ONNX model.</p></li>
+<li><p><strong>model</strong> (<em>Module</em>) – Model to export.</p></li>
+<li><p><strong>save_model_path</strong> (<em>str</em>) – Path to save the model.</p></li>
+<li><p><strong>repr_dataset</strong> (<em>Callable</em>) – Representative dataset for tracing the pytorch model (mandatory for exporting it).</p></li>
+<li><p><strong>is_layer_exportable_fn</strong> (<em>Callable</em>) – Callable to check whether a layer can be exported or not.</p></li>
+<li><p><strong>serialization_format</strong> (<a class="reference internal" href="#model_compression_toolkit.exporter.PytorchExportSerializationFormat" title="model_compression_toolkit.exporter.PytorchExportSerializationFormat"><em>PytorchExportSerializationFormat</em></a>) – Format to export the model according to (by default PytorchExportSerializationFormat.ONNX).</p></li>
+<li><p><strong>quantization_format</strong> (<a class="reference internal" href="#model_compression_toolkit.exporter.QuantizationFormat" title="model_compression_toolkit.exporter.QuantizationFormat"><em>QuantizationFormat</em></a>) – Format of how quantizers are exported (fakely-quant, int8, MCTQ quantizers).</p></li>
+<li><p><strong>onnx_opset_version</strong> (<em>int</em>) – ONNX opset version to use for exported ONNX model.</p></li>
+<li><p><strong>output_names</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of output node names for export compatibility. This argument is relevant only when using PytorchExportSerializationFormat.ONNX.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -240,6 +240,20 @@ an ONNX model with custom quantizers from mct_quantizers module.</p>
 <div class="line"><br /></div>
 </div>
 </section>
+<section id="onnx-model-output-names">
+<h3>ONNX model output names<a class="headerlink" href="#onnx-model-output-names" title="Permalink to this heading">¶</a></h3>
+<p>To set the model output names the argument <cite>output_names</cite> can be used:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mct</span><span class="o">.</span><span class="n">exporter</span><span class="o">.</span><span class="n">pytorch_export_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">quantized_exportable_model</span><span class="p">,</span>
+    <span class="n">save_model_path</span><span class="o">=</span><span class="n">onnx_file_path</span><span class="p">,</span>
+    <span class="n">repr_dataset</span><span class="o">=</span><span class="n">representative_data_gen</span><span class="p">,</span>
+    <span class="n">output_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;model_output&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
 <section id="use-exported-model-for-inference">
 <h3>Use exported model for inference<a class="headerlink" href="#use-exported-model-for-inference" title="Permalink to this heading">¶</a></h3>
 <p>To load and infer using the exported model, which was exported to an ONNX file in MCTQ format, we will use <cite>mct_quantizers</cite> method <cite>get_ort_session_options</cite> during onnxruntime session creation. <strong>Notice</strong>, inference on models that are exported in this format are slowly and suffers from longer latency. However, inference of these models on IMX500 will not suffer from this issue.</p>
@@ -290,6 +304,7 @@ an ONNX model with custom quantizers from mct_quantizers module.</p>
 <li><a class="reference internal" href="#onnx">ONNX</a></li>
 <li><a class="reference internal" href="#mctq-quantization-format">MCTQ Quantization Format</a></li>
 <li><a class="reference internal" href="#onnx-opset-version">ONNX opset version</a></li>
+<li><a class="reference internal" href="#onnx-model-output-names">ONNX model output names</a></li>
 <li><a class="reference internal" href="#use-exported-model-for-inference">Use exported model for inference</a></li>
 </ul>
 </li>
@@ -318,7 +333,7 @@ an ONNX model with custom quantizers from mct_quantizers module.</p>
         <li class="right" style="margin-right: 10px">
           <a href="../../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.3.0</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.4.2</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">exporter Module</a></li> 
       </ul>
     </div>

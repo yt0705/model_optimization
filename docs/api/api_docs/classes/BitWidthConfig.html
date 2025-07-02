@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>BitWidthConfig &#8212; MCT Documentation: ver 2.3.0</title>
+    <title>BitWidthConfig &#8212; MCT Documentation: ver 2.4.2</title>
     <link rel="stylesheet" type="text/css" href="../../../static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../static/bizstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../../static/css/custom.css" />
@@ -31,7 +31,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.3.0</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.4.2</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">BitWidthConfig</a></li> 
       </ul>
     </div>  
@@ -45,15 +45,26 @@
 <span id="ug-bitwidthconfig"></span><h1>BitWidthConfig<a class="headerlink" href="#bitwidthconfig" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="model_compression_toolkit.core.BitWidthConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model_compression_toolkit.core.</span></span><span class="sig-name descname"><span class="pre">BitWidthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manual_activation_bit_width_selection_list=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model_compression_toolkit.core.BitWidthConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model_compression_toolkit.core.</span></span><span class="sig-name descname"><span class="pre">BitWidthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manual_activation_bit_width_selection_list=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manual_weights_bit_width_selection_list=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model_compression_toolkit.core.BitWidthConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to manage manual bit-width configurations.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="model_compression_toolkit.core.BitWidthConfig.manual_activation_bit_width_selection_list">
 <span class="sig-name descname"><span class="pre">manual_activation_bit_width_selection_list</span></span><a class="headerlink" href="#model_compression_toolkit.core.BitWidthConfig.manual_activation_bit_width_selection_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of ManualBitWidthSelection objects defining manual bit-width configurations.</p>
+<dd><p>A list of ManualBitWidthSelection objects for activation defining manual bit-width configurations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#model_compression_toolkit.core.common.quantization.bit_width_config.ManualBitWidthSelection" title="model_compression_toolkit.core.common.quantization.bit_width_config.ManualBitWidthSelection">ManualBitWidthSelection</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_compression_toolkit.core.BitWidthConfig.manual_weights_bit_width_selection_list">
+<span class="sig-name descname"><span class="pre">manual_weights_bit_width_selection_list</span></span><a class="headerlink" href="#model_compression_toolkit.core.BitWidthConfig.manual_weights_bit_width_selection_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of ManualWeightsBitWidthSelection for weights objects defining manual bit-width configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[ManualWeightsBitWidthSelection]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -128,7 +139,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.3.0</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MCT Documentation: ver 2.4.2</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">BitWidthConfig</a></li> 
       </ul>
     </div>
