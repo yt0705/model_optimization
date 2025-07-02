@@ -173,6 +173,22 @@ By default, the used ONNX opset version is 15, but this can be changed using `on
 
 |
 
++++++++++++++++++++++++++++
+ONNX model output names
++++++++++++++++++++++++++++
+
+To set the model output names the argument `output_names` can be used:
+
+.. code-block:: python
+
+    mct.exporter.pytorch_export_model(
+        model=quantized_exportable_model,
+        save_model_path=onnx_file_path,
+        repr_dataset=representative_data_gen,
+        output_names=['model_output'])
+
+|
+
 ++++++++++++++++++++++++++++++++++++
 Use exported model for inference
 ++++++++++++++++++++++++++++++++++++
