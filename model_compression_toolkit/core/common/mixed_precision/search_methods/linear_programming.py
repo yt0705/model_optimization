@@ -95,8 +95,9 @@ class MixedPrecisionIntegerLPSolver:
         """
         candidate_count = sum(len(sensitivities) for sensitivities in layer_to_sensitivity_mapping.values())
         for target, ru_matrix in candidates_ru.items():
-            if ru_matrix.shape[0] != candidate_count:
-                raise ValueError(f'Resource utilization matrix for {target} must have {candidate_count} rows.')
+            if ru_matrix.ndim != 2 or ru_matrix.shape[0] != candidate_count:
+                raise ValueError(f'Resource utilization matrix for {target} must be a 2-dimensional array '
+                                 f'with {candidate_count} rows; got shape {ru_matrix.shape}.')
 
         filtered_sensitivity = {}
         solver_to_original_candidate_indices = {}
