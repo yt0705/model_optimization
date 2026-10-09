@@ -59,10 +59,12 @@ class MixedPrecisionIntegerLPSolver:
             solver = pulp.COIN_CMD(timeLimit=SOLVER_TIME_LIMIT)
             stats = lp_problem.solve(solver=solver)
             status = stats.status
-            # As in the previous version (PuLP 3.x), 
-            # we retain the policy of accepting any feasible solution found within the time limit.
-            acceptable = (status == pulp.LpSolveStatus.Optimal or
-                          (status == pulp.LpSolveStatus.TimeLimit and stats.has_solution))
+            # Preserve PuLP 3.x acceptance of solutions within gap tolerance or at the time limit.
+            acceptable = stats.has_solution and status in (
+                pulp.LpSolveStatus.Optimal,
+                pulp.LpSolveStatus.TimeLimit,
+                pulp.LpSolveStatus.GapLimit,
+            )
         else:
             solver = pulp.PULP_CBC_CMD(timeLimit=SOLVER_TIME_LIMIT)
             lp_problem.solve(solver=solver)
